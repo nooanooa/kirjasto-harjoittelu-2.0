@@ -2,16 +2,20 @@ const request = new Request("https://api.kirjastot.fi/v4/library");
 
 const button = document.getElementById("search");
 
-
 button.addEventListener("click",SearchLibrary);
 
 function SearchLibrary(){
-    window
-    fetch(request)
+    window.fetch(request)
         .then((res) => {
+
+        if (!res.ok) {
+            throw new Error(`HTTP had an error! It's status is: ${res.status}`);
+        }
+
         return res.json();
         })
         .then((data) => {
+        // const value = document.getElementById("librarysearch").value.toLowerCase();
 
         for (const k of Object.entries(data.items)) {
             const template = document.createElement("div");
@@ -30,6 +34,6 @@ function SearchLibrary(){
 
         })
         .catch((err) => {
-        throw new Error(err)
-        })
+        throw new Error(err);
+    })
 }
