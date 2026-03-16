@@ -5,3 +5,9 @@ header {
   font-size: 35px;
   color: white;
 }
+
+#library {
+  background-color:#a1a1a1;
+  width:50%;
+  height:100%;
+}
