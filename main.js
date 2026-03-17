@@ -1,10 +1,23 @@
 const button = document.getElementById("search");
+const button2 = document.getElementById("change");
+let endpoint = "name";
 
 button.addEventListener("click",SearchLibrary);
 
+button2.addEventListener("click",function ChangeEndpoint() {
+    if (endpoint === "name") {
+        endpoint = "city.name"
+        return button2.textContent = "Haku: Paikkaunta"
+    } else {
+        endpoint = "name"
+        return button2.textContent = "Haku: Kirjaston nimi"
+    }
+})
+
+
 async function SearchLibrary(){
     const value = document.getElementById("librarysearch").value.toLowerCase();
-    await fetch(`https://api.kirjastot.fi/v4/library?name=${value}`)
+    await fetch(`https://api.kirjastot.fi/v4/library?${endpoint}=${value}`)
         .then((res) => {
 
         if (!res.ok) {
@@ -13,43 +26,43 @@ async function SearchLibrary(){
 
         return res.json();
         })
+
         .then((data) => {
 
-        for (const k of Object.entries(data.items)) {
+            const lib = document.getElementById("library")
+            while (lib.firstChild) {
+                lib.removeChild(lib.firstChild)
+            }
+
+            document.getElementById("welcome").textContent = `Kirjastoja löytyi: ${data.items.length}`
+            for (const k of Object.entries(data.items)) {
             const v = k[1];
             const template = document.createElement("div");
-            const name = document.createElement("p");
+            const info = document.createElement("p");
             const img = document.createElement("img");
-            const location = document.createElement("p");
-            const slog = document.createElement("p");
             const mapslocation = document.createElement("iframe");
 
-
-            img.style.width = "100%"
+            template.className = "template"
 
             mapslocation.src = `https://www.google.com/maps?q=${v.coordinates.lat},${v.coordinates.lon}&z=15&output=embed`
-            mapslocation.width = "100%"
-            mapslocation.height = "300px"
-            mapslocation.style.border = "0"
             mapslocation.loading = "lazy"
 
-            name.textContent = v.name;
-            slog.textContent = v.slogan;
-            location.innerHTML = ` ${v.address.street}, ${v.address.city}`;
+            info.innerHTML = `<p><strong>Nimi:</strong> ${v.name || "Ei tietoa."}</p>
+            <p><strong>Postinumero:</strong> ${v.address.zipcode || "Ei tietoa."}</p>
+            <p><strong>Tietoa:</strong> ${v.description || "Ei tietoa."}</p>
+            <p><strong>Sijainti:</strong> ${v.address.street || "Ei tietoa."}, ${v.address.city || "Ei tietoa."}</p>
+            `
             if (v.coverPhoto != null) {
                 img.src = v.coverPhoto.medium.url;
             }else {continue}
 
-
-            template.appendChild(name);
             template.appendChild(img);
-            template.appendChild(slog);
-            template.appendChild(location);
+            template.appendChild(info);
             template.appendChild(mapslocation);
-            document.getElementById("library").appendChild(template);
+            lib.appendChild(template);
         };
-
         })
+
         .catch((err) => {
         throw new Error(err);
     })

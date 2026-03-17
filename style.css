@@ -6,8 +6,49 @@ header {
   color: white;
 }
 
+#librarysearch, button{
+  padding: 15px;
+  font-size: 15px;
+  display:block;
+  margin: 0 auto;
+}
+#welcome {
+  text-align:center;
+  font-size: 22.5px;
+  font-style: italic;
+}
+
 #library {
-  background-color:#a1a1a1;
-  width:50%;
-  height:100%;
+  background-color:white;
+  margin:0 auto;
+  overflow:auto;
+  margin-top:30px;
+  width:80%;
+  height:70%;
+  text-align:left;
+}
+
+.template {
+  display:flex;
+  flex-wrap:wrap;
+  width:700px;
+  height: 700px;
+  margin: 0 auto;
+  background-color:white;
+  border: 3px solid black;
+  overflow:auto;
+}
+
+.template p {
+  font-size:20px;
+}
+
+.template img {
+  width:100%
+}
+
+.template iframe {
+  width:100%;
+  height:500px;
+  border:0;
 }
