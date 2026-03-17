@@ -8,10 +8,11 @@ This is a small project, which uses the aforementioned API to give information a
 1. Name
 2. Picture of the library
 3. Description
-4. City and street via Google Maps (the ones below are included in it)
-5. Open- and closing time
-6. Contact information
-7. Link to the library's site
+4. Zipcode
+5. City and street via Google Maps (the ones below can be found via Google Maps)
+6. Open- and closing time
+7. Contact information
+8. Link to the library's site
 
 As mentioned before, this will not be using any framework. I will rather use the commoner web application. It is so, because the last version got very messy with worthless code, API not working correctly and due to the fact that I separated the search from the home page, which made it harder to add the function (and not working correctly).
 
