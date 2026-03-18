@@ -34,11 +34,11 @@ The issues with these were the fact that they overlapped on eachother, which on 
 
 On the last day, I managed to do few more tweaks, which included
 
--Updating the template for the libraries to look better
--Adding a background to the site, which also moves up
--Added links with the inclusion of **&with=links** to the fetch request
--Fixed an issue where it couldn't show any libraries if coordinates are null in the API
--COMMENTS, WHICH I TOTALLY FORGOT ABOUT (cometnts)
+- Updating the template for the libraries to look better
+- Adding a background to the site, which also moves up
+- Added links with the inclusion of **&with=links** to the fetch request
+- Fixed an issue where it couldn't show any libraries if coordinates are null in the API
+- COMMENTS, WHICH I TOTALLY FORGOT ABOUT (cometnts)
 
 Overall, I really like how it turned out. It looks clean, and the code for it looks clean aswell... atleast that's what I think.
 I could've done better by including things like contact information and open-closing time, but figuring out how to do it would've been a roadblock.
