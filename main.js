@@ -16,7 +16,7 @@ button2.addEventListener("click",function ChangeEndpoint() {
 
 async function SearchLibrary(){
     const value = document.getElementById("librarysearch").value.toLowerCase();
-    await fetch(`https://api.kirjastot.fi/v4/library?${endpoint}=${value}&with=links`)
+    await fetch(`https://api.kirjastot.fi/v4/library?${endpoint}=${value}&with=links`) //fetches api, endpoint is either city.name or name and value is the input text
         .then((res) => {
 
         if (!res.ok) {
@@ -56,7 +56,7 @@ async function SearchLibrary(){
             if (v.coordinates != null) {
                 mapslocation.src = `https://www.google.com/maps?q=${v.coordinates.lat},${v.coordinates.lon}&z=15&output=embed`
                 mapslocation.loading = "lazy"
-            } else{continue}
+            } else{continue} //i feel like it just creates the elements for nothing (and dont get deleted lol)
     
             info.innerHTML = `<p><strong>Nimi:</strong> ${v?.name || "Ei tietoa."}</p> 
                 <p><strong>Postinumero:</strong> ${v?.address.zipcode || "Ei tietoa."}</p>
