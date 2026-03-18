@@ -28,10 +28,11 @@ async function SearchLibrary(){
 
         .then((data) => {
 
-            const lib = document.getElementById("library")
+            const lib = document.getElementById("library") //removes all children from previous search
             while (lib.firstChild) {
                 lib.removeChild(lib.firstChild)
             }
+
             for (const k of Object.entries(data.items)) {
             const v = k[1];
             const template = document.createElement("div");
@@ -44,10 +45,8 @@ async function SearchLibrary(){
 
 
             const links = Array.isArray(v.links) ? v.links : [];
-            const contactInfo = Array.isArray(v.primaryContactInfo) ? v.primaryContactInfo : [];
 
-
-            const linksHtml = links.length > 0 ? `<div><strong>Yhteystiedot:</strong><ul>${links.map(link => {
+            const linksHtml = links.length > 0 ? `<div><strong>Yhteystiedot:</strong><ul>${links.map(link => { //finds url and name of the link from with=links
                const url = link?.url || "";
                const name = link?.name || url || "Linkki";
                return url ? `<li><a href="${link?.url || ""}" target="_blank" rel="noreferrer">${name}</a></li>` : `<li>${name}</li>`;
@@ -59,7 +58,7 @@ async function SearchLibrary(){
                 mapslocation.loading = "lazy"
             } else{continue}
     
-            info.innerHTML = `<p><strong>Nimi:</strong> ${v?.name || "Ei tietoa."}</p>
+            info.innerHTML = `<p><strong>Nimi:</strong> ${v?.name || "Ei tietoa."}</p> 
                 <p><strong>Postinumero:</strong> ${v?.address.zipcode || "Ei tietoa."}</p>
                 <p><strong>Tietoa:</strong> ${v?.description || "Ei tietoa."}</p>
                 <p><strong>Sijainti:</strong> ${v?.address.street || "Ei tietoa."}, ${v?.address.city || "Ei tietoa."}</p>
@@ -69,7 +68,8 @@ async function SearchLibrary(){
             if (v.coverPhoto != null) {
                 img.src = v.coverPhoto.medium.url;
             }else {continue}
-            template.appendChild(span)
+
+            template.appendChild(span) //Why not.
             span.appendChild(img);
             span.appendChild(info);
             span.appendChild(mapslocation);
