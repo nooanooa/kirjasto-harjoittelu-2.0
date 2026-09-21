@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <title>Kirjasto</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>Kirjastohaku <p id ="welcome">Tervetuloa. Tämä sivusto löytää suomalaisia kirjastoja. Etsi nyt hakemalla!</p> </header>
+    <br>
+    <div>
+        <input type="text"
+        id="librarysearch"
+        name="librarysearch"
+        placeholder="Kirjaston nimi tai paikkakunta"
+        minlength="1"
+        maxlength="40"
+        size="30" 
+        />
+        <br>
+        <button id="search">Hae</button>
+        <br>
+        <button id="change">Haku: Kirjaston nimi</button>
+    </div>
+    <div id="library">
+
+    </div>
+</body>
+    <script src="main.js" defer></script>
+</html>
